@@ -72,9 +72,11 @@
     </summary>
     
     
-      <category term="Sharepoint" scheme="https://divosuplente.github.io/categories/Sharepoint/"/>
+      <category term="Sharepoint Online" scheme="https://divosuplente.github.io/categories/Sharepoint-Online/"/>
     
-      <category term="SPFx" scheme="https://divosuplente.github.io/categories/Sharepoint/SPFx/"/>
+      <category term="O365" scheme="https://divosuplente.github.io/categories/Sharepoint-Online/O365/"/>
+    
+      <category term="SPFx" scheme="https://divosuplente.github.io/categories/Sharepoint-Online/O365/SPFx/"/>
     
     
       <category term="Sharepoint" scheme="https://divosuplente.github.io/tags/Sharepoint/"/>
