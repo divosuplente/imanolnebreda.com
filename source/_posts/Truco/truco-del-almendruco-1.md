@@ -3,7 +3,9 @@ title: "Truco del almendruco 1: Inicio condicional de flujos con expresión regu
 date: 2017-09-05
 author: Imanol Nebreda
 categories:
-- [Truco del almendruco, Sharepoint, Workflow]
+- Truco del almendruco
+- Sharepoint
+- Workflow
 tags:
 - Sharepoint
 - Sharepoint Designer

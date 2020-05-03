@@ -3,7 +3,9 @@ title: "Truco del almendruco 3: Mi flujo de SP 2013 no se inicia automáticament
 date: 2018-05-10
 author: Imanol Nebreda
 categories:
-- [Truco del almendruco, Sharepoint, Workflow]
+- Truco del almendruco
+- Sharepoint
+- Workflow
 tags:
 - Sharepoint
 - Sharepoint Designer
