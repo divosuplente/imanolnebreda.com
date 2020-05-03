@@ -23,7 +23,7 @@ avatar:
   width: 124
   height: 124
   top: 0
-  url: css/images/mylogo.jpg
+  url: css/images/mylogo.png
 
 # Homepage
 # eg. home_background_image: [css/images/home-bg.jpg, http://t.cn/RMbvEza]
@@ -37,7 +37,7 @@ home_background_image:
 home_logo_image:
   enable: false
   border: false
-  url: css/images/homelogo.jpg
+  url: css/images/mylogo.png
 
 # AboutPage background
 about_big_image: [https://source.unsplash.com/collection/954550/1920x1080]
@@ -90,7 +90,7 @@ highlight_theme: normal
 # Article theme color
 # Available value:
 #    random | orange | blue | red | green | black
-theme_color: random
+theme_color: orange
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

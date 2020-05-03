@@ -1,6 +1,6 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "Sharepoint musings blog",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "hexo generate",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "ejs-lint": "^1.0.1",
-    "hexo": "^4.0.0",
+    "hexo": "^4.2.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^2.2.0",
