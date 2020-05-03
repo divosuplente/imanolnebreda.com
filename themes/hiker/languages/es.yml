@@ -1,0 +1,47 @@
+home: Home
+archives: Archivo
+about: Sobre mí
+categories: Categorías
+search: Búsqueda
+tags: Etiquetas
+tagcloud: Nube de etiquetas
+tweets: Tweets
+prev: Anterior
+next: Siguiente
+comment: Comentarios
+edit: Editar
+archive_a: Archivos
+archive_b: "Archivos: %s"
+page: "Página %d"
+recent_posts: Artículos recientes
+newer: Más recientes
+older: Más antiguos
+share: Compartir
+powered_by: Powered by
+rss_feed: RSS
+category: Categoría
+tag: Etiqueta
+connect: "Conectar"
+post_total_count: Hay %d artículos en total hasta ahora.
+right_reserved: "© %s"
+site_uv: "UV"
+site_pv: "PV"
+article_pv: "PV:"
+read_more: Leer más
+contents: Contenido
+none: Ninguno
+donation:
+  button_text: "Donar"
+insight:
+  hint: "Escribe algo..."
+  posts: "Artículos"
+  pages: "Páginas"
+  categories: "Categorías"
+  tags: "Etiquetas"
+  untitled: "(Sin título)"
+copyright:
+  author: "Autor: "
+  link: "Enlace del artículo: "
+  license_title: "Copyright Notice: "
+  left_license_content: "Todos los artículos de este blog están licenciados bajo "
+  right_license_content: "a menos que se especifique lo contrario."

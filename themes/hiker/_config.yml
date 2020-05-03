@@ -1,0 +1,121 @@
+# ---------------------------------------------------------------
+# Site Information Settings
+# ---------------------------------------------------------------
+
+# Header Menu
+menu:
+  Home: /
+  Archives: archives
+  Categories: categories
+  Tags: tags
+  About: about
+rss: /atom.xml
+
+since: 2018
+
+# Set default keywords (Use a comma to separate)
+keywords: "Sharepoint,Dev,Javascript,VueJS,ReactJS,SPFx,O365,Música,Cocina,Keto"
+
+# Put your favicon.ico or avatar.jpg into `hexo-site/themes/hiker/source/` directory.
+avatar:
+  enable: true
+  border: true
+  width: 124
+  height: 124
+  top: 0
+  url: css/images/mylogo.jpg
+
+# Homepage
+# eg. home_background_image: [css/images/home-bg.jpg, http://t.cn/RMbvEza]
+# eg. mode: image | polyline | trianglify
+home_background_image:
+  enable: true
+  mode: image
+  rolling: true
+  url: [https://source.unsplash.com/collection/962362/1920x1080]
+
+home_logo_image:
+  enable: false
+  border: false
+  url: css/images/homelogo.jpg
+
+# AboutPage background
+about_big_image: [https://source.unsplash.com/collection/954550/1920x1080]
+
+# Archive pagination
+archive_pagination: true
+
+# Post Article's Content
+post_catalog:
+  enable: true
+post_excerpt: true
+
+# Content
+fancybox: true
+
+# Sidebar
+sidebar: left
+
+widgets:
+  - social
+  - category
+  - tag
+  - tagcloud
+  - archive
+  - recent_posts
+
+# Social Links
+# Key is the name of FontAwsome icon.
+# Value is the target link (E.g. GitHub: https://github.com/iTimeTraveler)
+social:
+  Github: https://github.com/divosuplente
+  Twitter: https://twitter.com/spdevima
+  Instagram: https://instagram.com/divosuplente
+  Pinterest: https://www.pinterest.es/divosuplente/
+  email: imanol.nebreda@gmail.com
+
+# Search
+search:
+  insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+
+# comment ShortName, you can choose only ONE to display.
+disqus_shortname:
+
+# Code Highlight theme
+# Available value:
+#    default | gray | normal | night | night eighties | night blue | night bright
+# https://github.com/chriskempson/tomorrow-theme
+highlight_theme: normal
+
+# Article theme color
+# Available value:
+#    random | orange | blue | red | green | black
+theme_color: random
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+  - category
+  - tagcloud
+  - archive
+
+# widget behavior
+archive_type: "monthly"
+show_count: true
+
+# Google Webmaster tools verification setting
+# See: https://www.google.com/webmasters/
+google_site_verification: cJRHb7T0DhNlQk22cLnKCQWhnEdqZ4E_hdxv4aUmzHI
+
+# Miscellaneous
+google_analytics:
+
+# twitter:
+
+# post copyright
+copyright:
+  enable: true
+
+# post edit url, modify your post online for convenience
+# If you put your blog on GitHub, it should look like:
+# https://github.com/username/blog/edit/master/source/_posts/
+post_edit_url:
