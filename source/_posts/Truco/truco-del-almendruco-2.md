@@ -3,11 +3,11 @@ title: "Truco del almendruco 2: Solucionar error al empaquetar solución con SPF
 date: 2018-01-11
 author: Imanol Nebreda
 categories:
-- Truco del almendruco
-- Sharepoint
-- SPFx
+- [Truco del almendruco]
+- [SharePoint]
+- [SPFx]
 tags:
-- Sharepoint
+- SharePoint
 - SPFx
 ---
 

@@ -3,14 +3,14 @@ title: "SPO: Error en despliegue en catálogo de aplicaciones"
 date: 2018-04-05
 author: Imanol Nebreda
 categories:
-- Sharepoint Online
-- O365
-- SPFx
+- [SharePoint Online]
+- [O365]
+- [SPFx]
 tags:
 - App Catalog
 - O365 
-- Sharepoint
-- Sharepoint Online
+- SharePoint
+- SharePoint Online
 - SPFx
 toc: false
 ---
