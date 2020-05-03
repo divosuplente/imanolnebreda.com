@@ -1,1 +1,155 @@
-!function(t){var a=t("#search-form-wrap"),n=!1,e=function(){n=!0},i=function(t){setTimeout(function(){n=!1,t&&t()},200)};t("#nav-search-btn").on("click",function(){n||(e(),a.addClass("on"),i(function(){t(".search-form-input").focus()}))}),t(".search-form-input").on("blur",function(){e(),a.removeClass("on"),i()}),t("body").on("click",function(){t(".article-share-box.on").removeClass("on")}).on("click",".article-share-link",function(a){a.stopPropagation();var n=t(this),e=n.attr("data-url"),i=encodeURIComponent(e),o="article-share-box-"+n.attr("data-id"),s=n.offset();if(t("#"+o).length){var r=t("#"+o);if(r.hasClass("on"))return void r.removeClass("on")}else{var c=['<div id="'+o+'" class="article-share-box">','<input class="article-share-input" value="'+e+'">','<div class="article-share-links">','<a href="https://twitter.com/intent/tweet?url='+i+'" class="article-share-twitter" target="_blank" title="Twitter"></a>','<a href="http://pinterest.com/pin/create/button/?url='+i+'" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',"</div>","</div>"].join("");r=t(c),t("body").append(r)}t(".article-share-box.on").hide(),r.css({top:s.top+25,left:s.left}).addClass("on")}).on("click",".article-share-box",function(t){t.stopPropagation()}).on("click",".article-share-box-input",function(){t(this).select()}).on("click",".article-share-box-link",function(t){t.preventDefault(),t.stopPropagation(),window.open(this.href,"article-share-box-window-"+Date.now(),"width=500,height=450")}),t(".article-entry").each(function(a){t(this).find("img").each(function(){if(!t(this).parent().hasClass("fancybox")){var a=this.alt;a&&t(this).after('<span class="caption">'+a+"</span>"),t(this).wrap('<a href="'+this.src+'" title="'+a+'" class="fancybox"></a>')}}),t(this).find(".fancybox").each(function(){t(this).attr("rel","article"+a)})}),t.fancybox&&t(".fancybox").fancybox();var o=t("#container"),s=!1;t("#main-nav-toggle").on("click",function(){s||(s=!0,o.toggleClass("mobile-nav-on"),setTimeout(function(){s=!1},200))}),t("#wrap").on("click",function(){!s&&o.hasClass("mobile-nav-on")&&o.removeClass("mobile-nav-on")})}(jQuery);
+(function($) {
+  // Search
+  var $searchWrap = $("#search-form-wrap"),
+    isSearchAnim = false,
+    searchAnimDuration = 200;
+
+  var startSearchAnim = function() {
+    isSearchAnim = true;
+  };
+
+  var stopSearchAnim = function(callback) {
+    setTimeout(function() {
+      isSearchAnim = false;
+      callback && callback();
+    }, searchAnimDuration);
+  };
+
+  $("#nav-search-btn").on("click", function() {
+    if (isSearchAnim) return;
+
+    startSearchAnim();
+    $searchWrap.addClass("on");
+    stopSearchAnim(function() {
+      $(".search-form-input").focus();
+    });
+  });
+
+  $(".search-form-input").on("blur", function() {
+    startSearchAnim();
+    $searchWrap.removeClass("on");
+    stopSearchAnim();
+  });
+
+  // Share
+  $("body")
+    .on("click", function() {
+      $(".article-share-box.on").removeClass("on");
+    })
+    .on("click", ".article-share-link", function(e) {
+      e.stopPropagation();
+
+      var $this = $(this),
+        url = $this.attr("data-url"),
+        encodedUrl = encodeURIComponent(url),
+        id = "article-share-box-" + $this.attr("data-id"),
+        offset = $this.offset();
+
+      if ($("#" + id).length) {
+        var box = $("#" + id);
+
+        if (box.hasClass("on")) {
+          box.removeClass("on");
+          return;
+        }
+      } else {
+        var html = [
+          '<div id="' + id + '" class="article-share-box">',
+          '<input class="article-share-input" value="' + url + '">',
+          '<div class="article-share-links">',
+          '<a href="https://twitter.com/intent/tweet?url=' +
+            encodedUrl +
+            '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+          '<a href="http://pinterest.com/pin/create/button/?url=' +
+            encodedUrl +
+            '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+          "</div>",
+          "</div>",
+        ].join("");
+
+        box = $(html);
+
+        $("body").append(box);
+      }
+
+      $(".article-share-box.on").hide();
+
+      box
+        .css({
+          top: offset.top + 25,
+          left: offset.left,
+        })
+        .addClass("on");
+    })
+    .on("click", ".article-share-box", function(e) {
+      e.stopPropagation();
+    })
+    .on("click", ".article-share-box-input", function() {
+      $(this).select();
+    })
+    .on("click", ".article-share-box-link", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      window.open(this.href, "article-share-box-window-" + Date.now(), "width=500,height=450");
+    });
+
+  // Caption
+  $(".article-entry").each(function(i) {
+    $(this)
+      .find("img")
+      .each(function() {
+        if (
+          $(this)
+            .parent()
+            .hasClass("fancybox")
+        )
+          return;
+
+        var alt = this.alt;
+
+        if (alt) $(this).after('<span class="caption">' + alt + "</span>");
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+      });
+
+    $(this)
+      .find(".fancybox")
+      .each(function() {
+        $(this).attr("rel", "article" + i);
+      });
+  });
+
+  if ($.fancybox) {
+    $(".fancybox").fancybox();
+  }
+
+  // Mobile nav
+  var $container = $("#container"),
+    isMobileNavAnim = false,
+    mobileNavAnimDuration = 200;
+
+  var startMobileNavAnim = function() {
+    isMobileNavAnim = true;
+  };
+
+  var stopMobileNavAnim = function() {
+    setTimeout(function() {
+      isMobileNavAnim = false;
+    }, mobileNavAnimDuration);
+  };
+
+  $("#main-nav-toggle").on("click", function() {
+    if (isMobileNavAnim) return;
+
+    startMobileNavAnim();
+    $container.toggleClass("mobile-nav-on");
+    stopMobileNavAnim();
+  });
+
+  $("#wrap").on("click", function() {
+    if (isMobileNavAnim || !$container.hasClass("mobile-nav-on")) return;
+
+    $container.removeClass("mobile-nav-on");
+  });
+})(jQuery);
