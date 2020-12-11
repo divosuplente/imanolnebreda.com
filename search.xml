@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Truco del almendruco 3: Mi flujo de SP 2013 no se inicia automáticamente al crear el elemento con otro flujo</title>
+    <url>/2018/05/09/Truco/truco-del-almendruco-3/</url>
+    <content><![CDATA[<h2 id="Escenario"><a href="#Escenario" class="headerlink" title="Escenario"></a>Escenario</h2><ul>
+<li>Tienes una lista de solicitudes en la que desarrollas un flujo con el motor de flujos de Sharepoint 2013 usando Sharepoint Designer.</li>
+<li>En este flujo, llega un momento en el que asignas una tarea a un grupo de usuarios.</li>
+<li>En la solicitud existe un campo de usuarios (“Responsables”) que contiene los usuarios que forman parte del grupo al que se le ha asignado la tarea.</li>
+<li>Tienes un webpart de lista de tareas en tu página de inicio filtrada para que te muestre tus tareas pendientes, pero, cáspita, no te aparecen las tareas asignadas a tu grupo de usuarios.</li>
+<li>Te llevas las manos a la cabeza y piensas… ¿Qué hago ahora?<ul>
+<li>Creas un flujo en la lista de tareas, también con el motor de Sharepoint 2013 que:<ul>
+<li>Obtiene el ID de la solicitud del json que hay en el campo “Elementos Relacionados”</li>
+<li>Copias el contenido de “Responsables” de la solicitud en un campo de usuarios en la tarea de forma que las tareas puedan filtrarse por usuario.</li>
+</ul>
+</li>
+<li>Haces la prueba para comprobar que va todo sobre ruedas… y no va. <strong>El flujo de la lista de tareas no se ejecuta automáticamente, pero sí manualmente.</strong><ul>
+<li>Aqui es cuando das golpes con la cabeza en la pared y maldices a Sharepoint Designer por enésima vez +1.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Causa"><a href="#Causa" class="headerlink" title="Causa"></a>Causa</h2><p>La causa de este comportamiento es que la tarea aparece como creada por el flujo de trabajo en nombre de, cuando en realidad, en el fondo, está creada por la cuenta del sistema.</p>
+<img src="/2018/05/09/Truco/truco-del-almendruco-3/creado_por.png" class="" title="El motor de flujos de Sharepoint 2013 se niega rotundamente a ejecutar automáticamente flujos sobre elementos creados por la cuenta del sistema.">
+
+
+<h2 id="Solucion"><a href="#Solucion" class="headerlink" title="Solución"></a>Solución</h2><p>¿Qué otra opción queda?</p>
+<p>¡Los flujos del motor de Sharepoint 2010!</p>
+<p>Estos flujos <em>SÍ</em> se inician automáticamente, por lo que podemos desarrollar nuestro proceso como un flujo de Sharepoint 2010 y ya está.</p>
+<p>En un próximo artículo veremos si este problema puede solucionarse mediante un App Step de flujo de Sharepoint 2013. ¡Permanece atentx!</p>
+<p><em>P.D.: Ten en cuenta que los flujos de Sharepoint 2010 no disponen de bastantes acciones y funcionalidades que sí existen en Sharepoint 2013 como fases, obtención del índice de un carácter o texto en una cadena de texto, etc.</em></p>
+<p>Este post apareció por primera vez en <a href="https://itblogsogeti.com/2018/05/10/truco-del-almendruco-3-mi-flujo-de-sp-2013-no-se-inicia-automaticamente-al-crear-el-elemento-con-otro-flujo/" target="_blank" rel="noopener">https://itblogsogeti.com/2018/05/10/truco-del-almendruco-3-mi-flujo-de-sp-2013-no-se-inicia-automaticamente-al-crear-el-elemento-con-otro-flujo/</a></p>
+]]></content>
+      <categories>
+        <category>Truco del almendruco</category>
+        <category>SharePoint</category>
+        <category>Workflow</category>
+      </categories>
+      <tags>
+        <tag>SharePoint</tag>
+        <tag>SharePoint Designer</tag>
+        <tag>SharePoint Workflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SPO: Error en despliegue en catálogo de aplicaciones</title>
+    <url>/2018/04/04/Sharepoint/spfx/error-despliegue-catalogo/</url>
+    <content><![CDATA[<img src="/2018/04/04/Sharepoint/spfx/error-despliegue-catalogo/Screenshot.png" class="">
+
+<p>Recientemente hemos tenido un problema en un cliente que nos ha dejado un poco perplejos. El escenario es el siguiente: Hace unos meses deplegamos sin problemas en el <em>tenant</em> del cliente un webpart creado con spfx y que se ha estado usando satisfactoriamente. De repente, <strong>hace un par de semanas el webpart desapareció de la página</strong> en la que estaba (de tipo clásico) y tampoco aparecía en la galería de webparts.</p>
+<p>Trasteando por internet y yammer, encontramos que bajo ciertas circunstancias, y debido a un bug de la plantilla de yeoman para spfx 1.4.0, los webparts podían no aparecer en la galería al actualizarlos.</p>
+<p>Por probar, <strong>generamos el mismo webpart como un proyecto aparte</strong>con la versión actualizada de spfx (1.4.1) que arreglaba este problema.</p>
+<p>A la hora de desplegar la aplicación en el catálogo de aplicaciones del cliente nos encontramos con que nos daba error. ¡<em>Oh, sorpresa</em>! En<strong>nuestros_ tenants_ de desarrollo se despliega sin problemas.</strong></p>
+<p>Revisas el código, los manifiestos, el empaquetado… todo está bien. Te rascas la cabeza. Vuelves a comprobarlo. Vuelves a desplegarlo en el tenant del cliente, y vuelve a dar error. Más rascado de cabeza.</p>
+<p>Probamos a desplegar la aplicación en dos tenants de producción diferentes y falla en uno de los dos ¡<em>toma ya</em>!</p>
+<p>¿La diferencia entre ambos <em>tenants</em>? El <a href="https://appsource.microsoft.com/es-es/marketplace/apps?product=office&page=1&src=office&corrid=65684852-8803-4e1d-9b40-ca538c954f55&omexanonuid=cd2841d4-0358-44d5-a5a6-6bacd543e0e0" target="_blank" rel="noopener">Office Store</a> estaba desactivado. <strong>Activamos el Office Store y volvemos a desplegar la aplicación y ¡<em>funciona</em>!</strong></p>
+<blockquote>
+<p><strong>Moraleja: Si tienes problemas de despliegue sin razon aparente, mira el estado del Office Store</strong></p>
+</blockquote>
+<p>PD: a día 4 de abril del 2018, el Office Store ya no se llama así, sino “User owned Apps and Services”.  </p>
+<p>Este blog post apareció por primera vez en <a href="https://itblogsogeti.com/2018/04/05/spo-error-en-despliegue-en-catalogo-de-aplicaciones/" target="_blank" rel="noopener">https://itblogsogeti.com/2018/04/05/spo-error-en-despliegue-en-catalogo-de-aplicaciones/</a></p>
+]]></content>
+      <categories>
+        <category>SPFx</category>
+        <category>SharePoint Online</category>
+        <category>O365</category>
+      </categories>
+      <tags>
+        <tag>SharePoint</tag>
+        <tag>SPFx</tag>
+        <tag>App Catalog</tag>
+        <tag>O365</tag>
+        <tag>SharePoint Online</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Truco del almendruco 2: Solucionar error al empaquetar solución con SPFx</title>
+    <url>/2018/01/10/Truco/truco-del-almendruco-2/</url>
+    <content><![CDATA[<h2 id="Bienvenido"><a href="#Bienvenido" class="headerlink" title="Bienvenido"></a>Bienvenido</h2><p>Bienvenido a la segunda parte de la serie de trucos del almendruco, donde aparecen pequeños trucos que nos hacen la vida algo más fácil.</p>
+<h2 id="Escenario"><a href="#Escenario" class="headerlink" title="Escenario"></a>Escenario</h2><p>Estás todo ilusionado haciendo un <strong>webpart para Sharepoint 2016/Sharepoint Online</strong>, con Sharepoint Framework y React. La pera. El webpart funciona en el workbench local (ejecutando <code>gulp serve</code>) y te propones a empaquetar la solución para su despliegue. Ejecutas <code>gulp build --production</code> y luego <code>gulp package-solucion --production</code> y… explota. No entiendes nada. El error que sale es algo asi:</p>
+<img src="/2018/01/10/Truco/truco-del-almendruco-2/error.png" class="" title="Error al ejecutar gulp package-solution –production">
+
+<p>Y piensas… <em>pero si tengo los manifiestos en su sitio y las rutas están bien, ¡qué raro!</em>, y te desesperas porque no eres capaz de solucionarlo.</p>
+<p>Pruebas a crearte un nuevo proyecto con la plantilla de yeoman, y sin hacer nada más, ejecutas los comandos para empaquetar la solución. Y pasa lo mismo. <em>Aaaahhh, que es un error de la plantilla del proyecto. Uffff. Menos mal</em>.</p>
+<h2 id="Solucion"><a href="#Solucion" class="headerlink" title="Solución"></a>Solución</h2><p>La solución es tan sencilla como olvidarte del primer comando <code>gulp build --production</code> y en su lugar ejecutar <code>gulp bundle --ship</code>.</p>
+<p>Verás cómo ahora, despues de haber ejecutado este nuevo comando, que en definitiva hace lo mismo, se empaqueta perfectamente la solución y puedes desplegarlo.</p>
+<p>De nada.</p>
+<p>Happy Coding!</p>
+<p>Este blog post apareció por primera vez en <a href="https://itblogsogeti.com/2018/01/11/truco-del-almendruco-2-solucionar-error-al-empaquetar-solucion-con-spfx/" target="_blank" rel="noopener">https://itblogsogeti.com/2018/01/11/truco-del-almendruco-2-solucionar-error-al-empaquetar-solucion-con-spfx/</a></p>
+]]></content>
+      <categories>
+        <category>Truco del almendruco</category>
+        <category>SharePoint</category>
+        <category>SPFx</category>
+      </categories>
+      <tags>
+        <tag>SharePoint</tag>
+        <tag>SPFx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Truco del almendruco 1: Inicio condicional de flujos con expresión regular</title>
+    <url>/2017/09/04/Truco/truco-del-almendruco-1/</url>
+    <content><![CDATA[<h2 id="Bienvenido"><a href="#Bienvenido" class="headerlink" title="Bienvenido"></a>Bienvenido</h2><p>Bienvenido al inicio de la serie de trucos del almendruco, donde irán apareciendo pequeños trucos que nos hacen la vida algo más fácil.</p>
+<h2 id="Escenario"><a href="#Escenario" class="headerlink" title="Escenario"></a>Escenario</h2><p>Si has trabajado con <strong>Nintex</strong>, probablemente sepas que en su producto para <strong>Sharepoint 2010</strong> introdujeron el concepto de <strong>inicio condicional de flujo</strong>, en el que puedes poner ciertas condiciones que si no se cumplen, el flujo no se inicia.</p>
+<p><strong>Sharepoint Designer</strong> no tiene esta característica, así que… ¿Cómo lo hacemos? Fácil, ponemos un If como primer paso, y si no se cumple, paramos el flujo.</p>
+<p>Ahora bien, supongamos que tenemos varias condiciones y que el flujo no debe correr si se cumple alguna de ellas.</p>
+<h2 id="Solucion"><a href="#Solucion" class="headerlink" title="Solución"></a>Solución</h2><p>Con Nintex, podemos fácilmente implementarlo con su interfaz gráfica. En Sharepoint Designer tenemos que usar algún truco que otro. ¿Se te ocurre qué podemos usar? ¡Una expresión regular! Este truco también sirve para Nintex, ya que a veces los inicios condicionales no funcionan tan bien como sería deseable.</p>
+<p>Supongamos que el flujo no debe correr o iniciarse si alguna de las siguientes condiciones se cumple:</p>
+<ul>
+<li>Duración es 0 Días</li>
+<li>Duración es 0 meses</li>
+<li>Duración es 0 años</li>
+</ul>
+<p>¿Cuál sería nuestra expresión regular?</p>
+<p>^(0 Días|0 meses|0 años)$</p>
+<p>“^” indica el inicio de la cadena, “$” indica el final de la cadena, “|” separa los distintos valores a comprobar y los paréntesis agrupan los distintos valores</p>
+<h2 id="¿Como-lo-interpretamos"><a href="#¿Como-lo-interpretamos" class="headerlink" title="¿Cómo lo interpretamos?"></a>¿Cómo lo interpretamos?</h2><p>Comprueba que el valor pasado coincide exactamente (de principio a fin, incluyendo espacios en blanco)<br>con alguno de los valores de la lista entre paréntesis</p>
+<p><strong>Nota</strong>: Fíjate que en la interpretación anterior dice: “incluyendo espacios en blanco”. Esto es extremadamente importante, ya que si dejas un espacio entre la línea vertical y el valor (por ejemplo: “| 0 meses”), ese espacio en blanco se tiene en cuenta y cuando pruebes tu flujo la condición no se cumplirá nunca. Lo mismo ocurre con el paréntesis inicial y el final. <em>¡No dejes espacios en blanco que no existan en el valor!</em></p>
+<p>Se ve así en Sharepoint Designer:</p>
+<img src="/2017/09/04/Truco/truco-del-almendruco-1/inicio-condicional-sharepoint.png" class="" title="Inicio condicional con expresión regular en Sharepoint Designer">
+
+<p>Este blog post apareció por primera vez en <a href="https://itblogsogeti.com/2017/09/05/truco-del-almendruco-1-inicio-condicional-de-flujos-con-expresion-regular/" target="_blank" rel="noopener">https://itblogsogeti.com/2017/09/05/truco-del-almendruco-1-inicio-condicional-de-flujos-con-expresion-regular/</a></p>
+]]></content>
+      <categories>
+        <category>Truco del almendruco</category>
+        <category>SharePoint</category>
+        <category>Workflow</category>
+      </categories>
+      <tags>
+        <tag>SharePoint</tag>
+        <tag>SharePoint Designer</tag>
+        <tag>SharePoint Workflow</tag>
+      </tags>
+  </entry>
+</search>
