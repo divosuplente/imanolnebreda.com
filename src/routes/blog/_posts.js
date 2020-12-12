@@ -14,14 +14,14 @@ marked.setOptions({
 
 const posts = [];
 for (let i = 0; i < files.length; i++) {
-  const content = fs.readFileSync(`posts/${files[i]}`, { encoding: "utf-8" });
-  // Use the front-matter library to separate the body from the front matter
-  const { body, ...frontMatter } = fm(content);
-  // Use the marked library to turn markdown into html
-  const html = marked(body);
-  posts.push({ html, ...frontMatter.attributes });
+  if (files[i].includes(".md")) {
+    const content = fs.readFileSync(`posts/${files[i]}`, { encoding: "utf-8" });
+    // Use the front-matter library to separate the body from the front matter
+    const { body, ...frontMatter } = fm(content);
+    // Use the marked library to turn markdown into html
+    const html = marked(body);
+    posts.push({ html, ...frontMatter.attributes });
+  }
 }
-
-console.log(posts);
 
 export default posts;
