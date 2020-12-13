@@ -1,5 +1,5 @@
 <script>
-	import Nav from '../components/Nav.svelte';
+	import Nav from "../components/Nav.svelte";
 
 	export let segment;
 </script>
@@ -7,16 +7,18 @@
 <style>
 	main {
 		position: relative;
-		max-width: 56em;
+		max-width: 90em;
 		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
+		padding: 0 2em;
+		margin: 2em auto;
 		box-sizing: border-box;
 	}
 </style>
 
-<Nav {segment}/>
+<header id="header">
+	<Nav {segment} />
+</header>
 
 <main>
-	<slot></slot>
+	<slot />
 </main>

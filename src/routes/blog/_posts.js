@@ -1,27 +1,40 @@
-const fs = require("fs");
-const fm = require("front-matter");
-const marked = require("marked");
-const hljs = require("highlight.js");
+import _ from "lodash";
+import all from "../../../posts/*.md";
 
-const files = fs.readdirSync("posts");
+const transform = ({ filename, html, metadata }) => {
+  // the permalink is the filename with the '.md' ending removed
+  const slug = filename.replace(/\.md$/, "");
 
-// Use highlight.js as the highlighter for the marked library
-marked.setOptions({
-  highlight: function (code, lang) {
-    return hljs.highlight(lang, code).value;
-  },
+  // convert date string into a proper 'Date'
+  const date = metadata.date ? new Date(metadata.date) : new Date();
+
+  // return the new shape
+  return { ...metadata, filename, html, slug, date };
+};
+
+export const findPost = (slug) => {
+  // use lodash to find by field name
+  return _.find(posts, { slug });
+};
+
+const posts = _.chain(all) // begin a chain
+  .map(transform)
+  .orderBy("date", "desc")
+  .value();
+
+// Create the cloud of tags
+const tags = {};
+const tagsArrayOfArrays = all.map((file) => file.metadata.tags);
+const tagsFlattenedArray = [].concat.apply([], tagsArrayOfArrays).forEach((tag) => {
+  tags[tag] = { count: tags[tag] && tags[tag]["count"] ? tags[tag]["count"] + 1 : 1 };
 });
 
-const posts = [];
-for (let i = 0; i < files.length; i++) {
-  if (files[i].includes(".md")) {
-    const content = fs.readFileSync(`posts/${files[i]}`, { encoding: "utf-8" });
-    // Use the front-matter library to separate the body from the front matter
-    const { body, ...frontMatter } = fm(content);
-    // Use the marked library to turn markdown into html
-    const html = marked(body);
-    posts.push({ html, ...frontMatter.attributes });
-  }
-}
+// Get all the cloud of categories
+const cats = {};
+const catsArrayOfArrays = all.map((file) => file.metadata.categories);
+const catsFlattenedArray = [].concat.apply([], catsArrayOfArrays).forEach((cat) => {
+  cats[cat] = { count: cats[cat] && cats[cat]["count"] ? cats[cat]["count"] + 1 : 1 };
+});
 
+export { tags as tags, cats as categories };
 export default posts;

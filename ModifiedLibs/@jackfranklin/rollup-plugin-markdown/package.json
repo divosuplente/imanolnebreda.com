@@ -1,0 +1,57 @@
+{
+  "_from": "@jackfranklin/rollup-plugin-markdown",
+  "_id": "@jackfranklin/rollup-plugin-markdown@0.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-dL4gbVgzeUompH/txuzfUjsvmRKVnEzbLprM+W4FzvernlfZ1olwxxIfDX+wX3awbbB4uuHCmlWeiTL27IVYmQ==",
+  "_location": "/@jackfranklin/rollup-plugin-markdown",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@jackfranklin/rollup-plugin-markdown",
+    "name": "@jackfranklin/rollup-plugin-markdown",
+    "escapedName": "@jackfranklin%2frollup-plugin-markdown",
+    "scope": "@jackfranklin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/@jackfranklin/rollup-plugin-markdown/-/rollup-plugin-markdown-0.2.0.tgz",
+  "_shasum": "d7027777573924fdbe2c6afc238bc15ec907219b",
+  "_spec": "@jackfranklin/rollup-plugin-markdown",
+  "_where": "C:\\Ima\\ws\\imanolnebreda.com",
+  "author": {
+    "name": "Jack Franklin"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "gray-matter": "^4.0.2",
+    "rollup-pluginutils": "^2.8.2",
+    "showdown": "^1.9.1"
+  },
+  "deprecated": false,
+  "description": "Parse markdown files and import them with Rollup",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "rollup": "^1.27.14"
+  },
+  "fles": [
+    "src/"
+  ],
+  "keywords": [
+    "markdown",
+    "rollup"
+  ],
+  "license": "MIT",
+  "main": "src/rollup-plugin-markdown.js",
+  "name": "@jackfranklin/rollup-plugin-markdown",
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "0.2.0"
+}

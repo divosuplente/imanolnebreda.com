@@ -13,10 +13,10 @@ tags:
 - SharePoint Online
 - SPFx
 toc: false
-slug: error-despliegue-catalogo
+summary: "Tu webpart desaparece repentinamente, el despliegue de la aplicación da problemas... ¿qué puede estar pasando?"
 ---
 
-![Error en despliegue en catálogo de aplicaciones](Screenshot.png)
+![Error en despliegue en catálogo de aplicaciones](blog/Screenshot.png)
 
 Recientemente hemos tenido un problema en un cliente que nos ha dejado un poco perplejos. El escenario es el siguiente: Hace unos meses deplegamos sin problemas en el _tenant_ del cliente un webpart creado con spfx y que se ha estado usando satisfactoriamente. De repente, **hace un par de semanas el webpart desapareció de la página** en la que estaba (de tipo clásico) y tampoco aparecía en la galería de webparts.
 

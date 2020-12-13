@@ -51,6 +51,11 @@
 	.content :global(li) {
 		margin: 0 0 0.5em 0;
 	}
+
+	.content :global(img) {
+		max-width: 100%;
+		height: auto;
+	}
 </style>
 
 <svelte:head>
