@@ -12,6 +12,8 @@ import pkg from "./package.json";
 import markdown from "@jackfranklin/rollup-plugin-markdown";
 import glob from "rollup-plugin-glob";
 
+const { preprocess } = require("./svelte.config");
+
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
@@ -34,6 +36,7 @@ export default {
         dev,
         hydratable: true,
         emitCss: true,
+        preprocess,
       }),
       url({
         sourceDir: path.resolve(__dirname, "src/node_modules/images"),
@@ -93,6 +96,7 @@ export default {
         generate: "ssr",
         hydratable: true,
         dev,
+        preprocess,
       }),
       url({
         sourceDir: path.resolve(__dirname, "src/node_modules/images"),
