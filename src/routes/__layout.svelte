@@ -1,6 +1,15 @@
 <script>
-	import '../app.css';
-	import '../theme.css';
+	import BlogFooter from "$components/BlogFooter.svelte";
+	import HeaderHome from "$components/HeaderHome.svelte";
+	import "../app.css";
 </script>
 
-<slot />
+<div class="flex flex-col h-screen justify-between">
+	<HeaderHome />
+
+	<main>
+		<slot />
+	</main>
+
+	<BlogFooter />
+</div>

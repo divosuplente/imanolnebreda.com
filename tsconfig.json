@@ -7,7 +7,16 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": false,
+		"baseUrl": ".",
+		"paths": {
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"],
+			"$components/*": ["src/components/*"],
+			"$assets/*": ["src/assets/*"],
+			"$src/*": ["src/*"]
+		}
 	}
 }

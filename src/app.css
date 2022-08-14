@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@include "theme.css";
+
 html,
 body {
 	@apply h-screen overflow-hidden;
@@ -86,18 +88,18 @@ fieldset {
 }
 
 /* Inputs */
-[type='text'],
-[type='email'],
-[type='url'],
-[type='password'],
-[type='number'],
-[type='date'],
-[type='datetime-local'],
-[type='month'],
-[type='search'],
-[type='tel'],
-[type='time'],
-[type='week'],
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
 [multiple],
 textarea,
 select {
@@ -106,8 +108,8 @@ select {
 }
 
 /* Selectable */
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
 	@apply border-surface-500 rounded text-accent-600 focus:ring-accent-500;
 }
 
@@ -140,6 +142,6 @@ legend {
 }
 
 /* Accent Color - https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color */
-[type='range']:not(.range-input) {
+[type="range"]:not(.range-input) {
 	@apply w-full accent-accent-500;
 }
